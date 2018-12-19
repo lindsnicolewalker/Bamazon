@@ -4,6 +4,7 @@ var currentStock = [];
 var productId;
 
 require("console.table");
+
 var connection = mysql.createConnection({
     host: "localhost",
 
@@ -35,7 +36,26 @@ function updateInventory(currentInventory, productId) {
         ],
         function (error) {
             if (error) throw err;
-            console.log("Inventory Updated");
+                        
+            console.log("            *")
+            console.log("            XX")
+            console.log("           MMMMM")
+            console.log("           //(00")
+            console.log("        .:.....")
+            console.log("      .:::::::::")
+            console.log("     :: %%%%%% ::.")
+            console.log("    ::  ::::::  :::::::I)")
+            console.log("    (%  ::::::         |")
+            console.log("    /   |   /_____     |")
+            console.log("  /    |         ))   |")
+            console.log("  /      ------/ //    |")
+            console.log(" /            / //     |")
+            console.log("/            / //      |")
+            console.log("*            ZZZZ       *")
+            console.log("  _________ZZZZZZ_________//_//")
+            console.log("------------------------------------ ")
+
+            console.log("Inventory Updated: " + currentInventory);
             displayInventory();
         }
     );
@@ -52,7 +72,7 @@ function displayInventory () {
         inquirer.prompt([
             {
                 type: "input",
-                message: "What is the product id of the item you would like to purchase?",
+                message: "What is the product id of the item you would like to purchase? [Command (control) + C to exit]",
                 name: "productId"
             },
             {
@@ -63,7 +83,7 @@ function displayInventory () {
 
         ]).then(function (inquirerResponse) {
 
-            console.log(inquirerResponse);
+            // console.log(inquirerResponse);
             var currentInventory;
 
             for (i = 0; i < res.length; i++) {
@@ -72,26 +92,20 @@ function displayInventory () {
                 if (inquirerResponse.productId == currentStock[i].item_id) {
                     currentInventory = currentStock[i].stock_quantity; 
 
-                // console.log(inquirerResponse.productId == currentStock[i].item_id);
-                // console.log(inquirerResponse.productId);
-                // console.table(currentStock);
                 }
                 
             }
-            console.log("current inv");
-            console.log(currentInventory);
+            console.log("Inventory: " + currentInventory);
+            // console.log(currentInventory);
 
             if (currentInventory) {
-                    // console.log(currentStock);
-                    // console.log(currentInventory >= inquirerResponse.stock_quantity);
-                    // console.log(currentInventory -= inquirerResponse.stock_quantity);
-                    console.log(currentInventory);
+                    // console.log(currentInventory);
                 if (currentInventory >= inquirerResponse.stock_quantity) {
                     currentInventory -= inquirerResponse.stock_quantity;
-                    console.log("inside second if")
+                    // console.log("inside second if")
                     updateInventory(currentInventory, parseInt(inquirerResponse.productId));
-                    console.log(inquirerResponse.productId); 
-                    console.log(currentInventory);
+                    // console.log(inquirerResponse.productId); 
+                    // console.log(currentInventory);
 
                     
                 }else{
